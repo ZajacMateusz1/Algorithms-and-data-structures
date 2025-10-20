@@ -15,3 +15,11 @@
 # Input: nums = [3,3], target = 6
 # Output: [0,1]
 # Can you come up with an algorithm that is less than O(n2) time complexity?
+nums = [2,7,11,15]
+def twoSum(nums: list[int], target: int) -> list[int]:
+    seen = {}
+    for i,element in enumerate(nums):
+        if((target - element) in seen): return [seen[target - element],i]
+        seen[element] = i
+        
+print(twoSum(nums,9))
