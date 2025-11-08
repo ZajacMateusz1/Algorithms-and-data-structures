@@ -1,51 +1,50 @@
-# Given an integer x, return true if x is a palindrome, and false otherwise.
+# https://leetcode.com/problems/palindrome-number/description/
 
-# Example 1:
+# Złożoność:
+# - Ze stringiem
+# Czas: O(n) - Jedna iteracja
+# Pamięć: O(n) - Konwersja na stringa
+# - Bez stringa:
+# Czas: O(n) - Dwie iteracje, tablica są tej samej długości czyli 2n, ale się uprości.
+# Pamięć: O(n) - Tablica z cyframi
 
-# Input: x = 121
-# Output: true
-# Explanation: 121 reads as 121 from left to right and from right to left.
-# Example 2:
-
-# Input: x = -121
-# Output: false
-# Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
-# Example 3:
-
-# Input: x = 10
-# Output: false
-# Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
- 
-# Constraints:
-# -231 <= x <= 231 - 1
-# Follow up: Could you solve it without converting the integer to a string?
+# Podejście ze stringiem
 # def isPalindrome( x: int) -> bool:
 #     x = str(x)
 #     i,j = 0,len(x)-1
 #     while i<j:
 #         if x[i]!=x[j]:
 #             return False
-#         i+=1 
+#         i+=1
 #         j-=1
 #     return True
-def isPalindrome( x: int) -> bool:
+
+
+# Podejście bez stringa
+def isPalindrome(x: int) -> bool:
     y = x
     reversedDigits = []
     reversedNumber = 0
     i = 0
-    while x>0:
-        i+=1
-        number = x%10
+    while x > 0:
+        i += 1
+        number = x % 10
         reversedDigits.append(number)
-        x//=10
+        x //= 10
     print(reversedDigits, i)
     i = 0
-    j = len(reversedDigits)-1
-    while j>=0:
-        reversedNumber+=reversedDigits[j]*10**i
-        i+=1
-        j-=1
+    j = len(reversedDigits) - 1
+    while j >= 0:
+        reversedNumber += reversedDigits[j] * 10**i
+        i += 1
+        j -= 1
     print(reversedNumber)
-    if(reversedNumber == y):return True
+    if reversedNumber == y:
+        return True
     return False
-print(isPalindrome(1221))
+
+
+print(isPalindrome(121))  # True
+print(isPalindrome(-121))  # False
+print(isPalindrome(10))  # False
+print(isPalindrome(1221))  # True

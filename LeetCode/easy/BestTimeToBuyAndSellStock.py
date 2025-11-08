@@ -1,31 +1,21 @@
-# You are given an array prices where prices[i] is the price of a given stock on the ith day.
+# https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 
-# You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+# Złożoność:
+# Czas: O(n) - Jedna iteracja
+# Pamięć: O(1) - Tylko zmienne pomocnicze
 
-# Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
-# Example 1:
-
-# Input: prices = [7,1,5,3,6,4]
-# Output: 5
-# Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-# Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
-# Example 2:
-
-# Input: prices = [7,6,4,3,1]
-# Output: 0
-# Explanation: In this case, no transactions are done and the max profit = 0.
-
-# Na początek tworzę dwie zmienne minPrice = prices[0] i maxProfit = 0.
-# Potem przechodzę po tablicy pętlą, jeżeli element jest mniejszy od poprzedniego minPrice to ustwiam go jako minPrice. W przeciwnym wypadku sprawdzam czy profit z niego jest większy od aktualnie największego, jeśli tak ustawiam go jako masymalny profit
-def maxProfit( prices: list[int]) -> int:
+# Moja implementacja:
+def maxProfit(prices: list[int]) -> int:
     minPrice = prices[0]
     maxProfit = 0
-    for price in prices:
-        if(price<minPrice):
-            minPrice = price
-        elif price-minPrice>maxProfit:
-            maxProfit = price-minPrice
+    for i in range(1, len(prices)):
+        if prices[i] < minPrice:
+            minPrice = prices[i]
+        elif prices[i] - minPrice > maxProfit:
+            maxProfit = prices[i] - minPrice
     return maxProfit
-prices = [7,6,4,3,1]
-print(maxProfit(prices))
+
+
+print(maxProfit([7, 1, 5, 3, 6, 4]))  # 5
+print(maxProfit([7, 6, 4, 3, 1]))  # 0
