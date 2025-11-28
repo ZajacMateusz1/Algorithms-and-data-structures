@@ -28,6 +28,12 @@
 // - reverse
 // Czas: O(n) - Jedna iteracja
 // Pamięć: O(1) - tylko zmienne pomocnicze
+// - rotate
+// Czas: O(n) - Jedna iteracja
+// Pamięć: O(1) - tylko zmienne pomocnicze
+// - showAllNodes
+// Czas: O(n) - Jedna iteracja
+// Pamięć: O(1) - tylko zmienne pomocnicze
 
 class Node<T> {
   constructor(public value: T, public next: Node<T> | null = null) {}
@@ -147,40 +153,71 @@ class SinglyLinkedList<T> {
     this.head.next = prevNode;
     return this;
   }
-  // Moja pierwsza implementacja metody pop
-  // public pop(): Node<T> | undefined {
-  //   if (!this.head) return undefined;
-  //   if (!this.head.next) {
-  //     const valueToReturn = this.head;
-  //     this.head = null;
-  //     this.tail = null;
-  //     this.length--;
-  //     return valueToReturn;
-  //   }
-  //   let currentNode = this.head;
-  //   let nextNode = this.head.next;
-  //   while (nextNode.next) {
-  //     currentNode = nextNode;
-  //     nextNode = nextNode.next;
-  //   }
-  //   currentNode.next = null;
-  //   this.tail = currentNode;
-  //   this.length--;
-  //   return nextNode;
-  // }
+  public rotate(index: number): SinglyLinkedList<T> {
+    if (!this.head || !this.tail) return this;
+    index %= this.length;
+    if (index < 0) {
+      index += this.length;
+    } else if (index === 0) return this;
+    let i = 0;
+    let oldHead = this.head;
+    let prevIndexNode = this.head;
+    while (prevIndexNode.next && i < index - 1) {
+      prevIndexNode = prevIndexNode.next;
+      i++;
+    }
+    this.head = prevIndexNode.next;
+    prevIndexNode.next = null;
+    this.tail.next = oldHead;
+    this.tail = prevIndexNode;
+    return this;
+  }
+  public showAllNodes(): undefined {
+    let currentNode = this.head;
+    while (currentNode) {
+      console.log(currentNode);
+      currentNode = currentNode.next;
+    }
+  }
 }
+// Moja pierwsza implementacja metody pop
+// public pop(): Node<T> | undefined {
+//   if (!this.head) return undefined;
+//   if (!this.head.next) {
+//     const valueToReturn = this.head;
+//     this.head = null;
+//     this.tail = null;
+//     this.length--;
+//     return valueToReturn;
+//   }
+//   let currentNode = this.head;
+//   let nextNode = this.head.next;
+//   while (nextNode.next) {
+//     currentNode = nextNode;
+//     nextNode = nextNode.next;
+//   }
+//   currentNode.next = null;
+//   this.tail = currentNode;
+//   this.length--;
+//   return nextNode;
+// }
 const singlyLinkedList = new SinglyLinkedList<number>();
-console.log(singlyLinkedList.push(1));
-console.log(singlyLinkedList.push(2));
-console.log(singlyLinkedList.pop());
-console.log(singlyLinkedList.shift());
-console.log(singlyLinkedList.unshift(4));
-console.log(singlyLinkedList.unshift(5));
-console.log(singlyLinkedList.unshift(6));
-console.log(singlyLinkedList.get(2));
-console.log(singlyLinkedList.set(2, 7));
-console.log(singlyLinkedList.get(2));
-console.log(singlyLinkedList.insert(0, 10));
-console.log(singlyLinkedList.get(0));
-console.log(singlyLinkedList.remove(1));
-console.log(singlyLinkedList.reverse());
+// console.log(singlyLinkedList.push(1));
+// console.log(singlyLinkedList.push(2));
+// console.log(singlyLinkedList.pop());
+// console.log(singlyLinkedList.shift());
+// console.log(singlyLinkedList.unshift(4));
+// console.log(singlyLinkedList.unshift(5));
+// console.log(singlyLinkedList.unshift(6));
+// console.log(singlyLinkedList.get(2));
+// console.log(singlyLinkedList.set(2, 7));
+// console.log(singlyLinkedList.get(2));
+// console.log(singlyLinkedList.insert(0, 10));
+// console.log(singlyLinkedList.get(0));
+// console.log(singlyLinkedList.remove(1));
+for (let i = 5; i <= 25; i += 5) {
+  singlyLinkedList.push(i);
+}
+// console.log(singlyLinkedList.reverse());
+console.log(singlyLinkedList.rotate(1000));
+// singlyLinkedList.showAllNodes();
