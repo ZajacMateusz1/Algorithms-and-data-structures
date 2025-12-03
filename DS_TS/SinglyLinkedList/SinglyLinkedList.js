@@ -112,7 +112,7 @@ class SinglyLinkedList {
             currentNode = currentNode.next;
             i++;
         }
-        return currentNode;
+        return currentNode || undefined;
     }
     set(index, newValue) {
         const node = this.get(index);

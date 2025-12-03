@@ -101,7 +101,7 @@ class SinglyLinkedList<T> {
       currentNode = currentNode!.next;
       i++;
     }
-    return currentNode!;
+    return currentNode || undefined;
   }
   public set(index: number, newValue: T): boolean {
     const node = this.get(index);
