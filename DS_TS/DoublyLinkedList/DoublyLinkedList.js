@@ -29,6 +29,9 @@
 // - showAllNodes
 // Czas: O(n) - Jedna iteracja
 // Pamięć: O(1) - tylko zmienne pomocnicze
+// - reverse
+// Czas: O(n) - Jedna iteracja
+// Pamięć: O(1) - tylko zmienne pomocnicze
 Object.defineProperty(exports, "__esModule", { value: true });
 class Node {
     value;
@@ -179,6 +182,21 @@ class DoublyLinkedList {
             currentNode = currentNode.next;
         }
     }
+    reverse() {
+        if (!this.head || !this.tail)
+            return this;
+        const oldHead = this.head;
+        this.head = this.tail;
+        this.tail = oldHead;
+        let currentNode = oldHead;
+        while (currentNode) {
+            const nextNode = currentNode.next;
+            currentNode.next = currentNode.prev;
+            currentNode.prev = nextNode;
+            currentNode = nextNode;
+        }
+        return this;
+    }
 }
 const doublyLinkedList = new DoublyLinkedList();
 doublyLinkedList.push(1);
@@ -192,5 +210,7 @@ console.log(doublyLinkedList.set(0, 29));
 console.log(doublyLinkedList.insert(1, 21));
 console.log(doublyLinkedList.get(1));
 console.log(doublyLinkedList.remove(1));
+console.log(doublyLinkedList.showAllNodes());
+doublyLinkedList.reverse();
 console.log(doublyLinkedList.showAllNodes());
 console.log(doublyLinkedList);

@@ -172,7 +172,7 @@ class SinglyLinkedList<T> {
     this.tail = prevIndexNode;
     return this;
   }
-  public showAllNodes(): undefined {
+  public showAllNodes(): void {
     let currentNode = this.head;
     while (currentNode) {
       console.log(currentNode);

@@ -28,6 +28,9 @@
 // - showAllNodes
 // Czas: O(n) - Jedna iteracja
 // Pamięć: O(1) - tylko zmienne pomocnicze
+// - reverse
+// Czas: O(n) - Jedna iteracja
+// Pamięć: O(1) - tylko zmienne pomocnicze
 
 class Node<T> {
   constructor(
@@ -155,12 +158,26 @@ class DoublyLinkedList<T> {
       return nodeToRemove;
     }
   }
-  public showAllNodes(): undefined {
+  public showAllNodes(): void {
     let currentNode = this.head;
     while (currentNode) {
       console.log(currentNode);
       currentNode = currentNode.next;
     }
+  }
+  public reverse(): DoublyLinkedList<T> {
+    if (!this.head || !this.tail) return this;
+    const oldHead = this.head;
+    this.head = this.tail;
+    this.tail = oldHead;
+    let currentNode: Node<T> | null = oldHead;
+    while (currentNode) {
+      const nextNode: Node<T> | null = currentNode.next;
+      currentNode.next = currentNode.prev;
+      currentNode.prev = nextNode;
+      currentNode = nextNode;
+    }
+    return this;
   }
 }
 const doublyLinkedList = new DoublyLinkedList<number>();
@@ -175,5 +192,7 @@ console.log(doublyLinkedList.set(0, 29));
 console.log(doublyLinkedList.insert(1, 21));
 console.log(doublyLinkedList.get(1));
 console.log(doublyLinkedList.remove(1));
+console.log(doublyLinkedList.showAllNodes());
+doublyLinkedList.reverse();
 console.log(doublyLinkedList.showAllNodes());
 console.log(doublyLinkedList);
