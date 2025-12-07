@@ -20,25 +20,15 @@ class Stack {
     size = 0;
     push(value) {
         const newNode = new Node(value);
-        if (!this.first) {
-            this.first = newNode;
-        }
-        else {
-            newNode.next = this.first;
-            this.first = newNode;
-        }
+        newNode.next = this.first;
+        this.first = newNode;
         return ++this.size;
     }
     pop() {
         if (!this.first)
-            return null;
+            return undefined;
         const oldFirst = this.first;
-        if (!oldFirst.next) {
-            this.first = null;
-        }
-        else {
-            this.first = oldFirst.next;
-        }
+        this.first = oldFirst.next;
         oldFirst.next = null;
         this.size--;
         return oldFirst.value;
