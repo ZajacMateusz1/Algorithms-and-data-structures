@@ -1,4 +1,11 @@
 "use strict";
+// Złożoność:
+// - enqueue
+// Czas: O(1) - Wykonuję stałą liczbę operacji
+// Pamięć: O(1) - tylko zmienne pomocnicze
+// - dequeue
+// Czas: O(1) - Wykonuję stałą liczbę operacji
+// Pamięć: O(1) - tylko zmienne pomocnicze
 Object.defineProperty(exports, "__esModule", { value: true });
 class Node {
     value;
