@@ -1,11 +1,11 @@
 # Algorithms and Data Structures 💻
 
-## Mój profil na GitHub: [ZajacMateusz1](https://github.com/ZajacMateusz1)
+## [GitHub profile](https://github.com/ZajacMateusz1)
 
-## Mój profil na LeetCode: [ZajacMateusz1](https://leetcode.com/u/ZajacMateusz1/)
+## [LinkedIn profile](https://www.linkedin.com/in/mateusz-zaj%C4%85c-371971387/)
 
-## Mój profil na LinkedIn [Mateusz Zajac](https://www.linkedin.com/in/mateusz-zaj%C4%85c-371971387/)
+## Description
 
-## Opis
+Educational repository for learning algorithms and data structures.
 
-Repozytorium stworzone do nauki i ćwiczenia algorytmów oraz struktur danych.
+Note: Code comments are written in Polish.
