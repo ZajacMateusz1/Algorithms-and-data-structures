@@ -9,7 +9,7 @@
 class Node<T> {
   constructor(public value: T, public next: Node<T> | null = null) {}
 }
-class Queue<T> {
+export class Queue<T> {
   private first: Node<T> | null = null;
   private last: Node<T> | null = null;
   public size: number = 0;
@@ -24,7 +24,7 @@ class Queue<T> {
     }
     return ++this.size;
   }
-  public dequeue(): Node<T> | undefined {
+  public dequeue(): T | undefined {
     if (!this.first) return undefined;
     const oldFirst = this.first;
     if (!this.first.next) {
@@ -35,7 +35,7 @@ class Queue<T> {
       oldFirst.next = null;
     }
     this.size--;
-    return oldFirst;
+    return oldFirst.value;
   }
 }
 

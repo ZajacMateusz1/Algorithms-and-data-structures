@@ -1,4 +1,3 @@
-"use strict";
 // Złożoność:
 // - push
 // Czas: O(1) - Wykonuję stałą liczbę operacji
@@ -6,7 +5,6 @@
 // - pop
 // Czas: O(1) - Wykonuję stałą liczbę operacji
 // Pamięć: O(1) - tylko zmienne pomocnicze
-Object.defineProperty(exports, "__esModule", { value: true });
 class Node {
     value;
     next;
@@ -41,3 +39,4 @@ console.log(stack.push(3));
 console.log(stack.pop());
 console.log(stack.pop());
 console.log(stack);
+export {};

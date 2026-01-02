@@ -1,4 +1,3 @@
-"use strict";
 // Złożoność:
 // - push
 // Czas: O(1) - Wykonuję stałą liczbę operacji
@@ -35,7 +34,6 @@
 // - showAllNodes
 // Czas: O(n) - Jedna iteracja
 // Pamięć: O(1) - tylko zmienne pomocnicze
-Object.defineProperty(exports, "__esModule", { value: true });
 class Node {
     value;
     next;
@@ -244,4 +242,5 @@ for (let i = 5; i <= 25; i += 5) {
 }
 // console.log(singlyLinkedList.reverse());
 console.log(singlyLinkedList.rotate(1000));
+export {};
 // singlyLinkedList.showAllNodes();

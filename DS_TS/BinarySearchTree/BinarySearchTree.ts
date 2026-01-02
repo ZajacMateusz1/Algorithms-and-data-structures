@@ -17,6 +17,15 @@
 // Pamięć:
 //  - Średni: O(log n) - Wyjdzie taka sama jak czasowa, ponieważ od czasowej zależy ile funkcji dodam na stos.
 //  - Najgorszy: O(n) - Wyjdzie taka sama jak czasowa, ponieważ od czasowej zależy ile funkcji dodam na stos.
+// - BFS
+// Czas: O(n) - Odwiedzam każdy element raz.
+// Pamięć: O(n) - kolejka (szerokość drzewa) + tablica answer
+// DFS (Wszystkie warianty)
+// Czas: O(n) - Odwiedzam każdy element raz.
+// Pamięć:
+//  - stos rekurencji: O(log n) średnio, O(n) w najgorszym
+//  - tablica answer: O(n)
+import { Queue } from "../Queue/Queue.js";
 
 class Node<T> {
   constructor(
@@ -120,6 +129,56 @@ class BinarySearchTree<T> {
       } else return undefined;
     }
   }
+  public BFS(): T[] {
+    if (!this.root) return [];
+    const queue = new Queue<Node<T>>();
+    const answer = [];
+    queue.enqueue(this.root);
+    while (queue.size > 0) {
+      const node = queue.dequeue()!;
+      if (node.left) {
+        queue.enqueue(node.left);
+      }
+      if (node.right) {
+        queue.enqueue(node.right);
+      }
+      answer.push(node.value);
+    }
+    return answer;
+  }
+  public DFSPreOrder(): T[] {
+    if (!this.root) return [];
+    const answer: T[] = [];
+    this.DFSPreOrderHelper(this.root, answer);
+    return answer;
+  }
+  private DFSPreOrderHelper(currentNode: Node<T>, answer: T[]): void {
+    answer.push(currentNode.value);
+    if (currentNode.left) this.DFSPreOrderHelper(currentNode.left, answer);
+    if (currentNode.right) this.DFSPreOrderHelper(currentNode.right, answer);
+  }
+  public DFSPostOrder(): T[] {
+    if (!this.root) return [];
+    const answer: T[] = [];
+    this.DFSPostOrderHelper(this.root, answer);
+    return answer;
+  }
+  private DFSPostOrderHelper(currentNode: Node<T>, answer: T[]): void {
+    if (currentNode.left) this.DFSPostOrderHelper(currentNode.left, answer);
+    if (currentNode.right) this.DFSPostOrderHelper(currentNode.right, answer);
+    answer.push(currentNode.value);
+  }
+  public DFSInOrder(): T[] {
+    if (!this.root) return [];
+    const answer: T[] = [];
+    this.DFSInOrderHelper(this.root, answer);
+    return answer;
+  }
+  private DFSInOrderHelper(currentNode: Node<T>, answer: T[]): void {
+    if (currentNode.left) this.DFSInOrderHelper(currentNode.left, answer);
+    answer.push(currentNode.value);
+    if (currentNode.right) this.DFSInOrderHelper(currentNode.right, answer);
+  }
 }
 
 const binarySearchTree = new BinarySearchTree<number>(
@@ -134,9 +193,24 @@ console.log(binarySearchTree.insertRecursive(2));
 console.log(binarySearchTree.insertRecursive(4));
 console.log(binarySearchTree.insertRecursive(3));
 console.log(binarySearchTree.insertRecursive(-1));
+console.log(binarySearchTree.insertRecursive(-4));
+console.log(binarySearchTree.insertRecursive(-5));
+console.log(binarySearchTree.insertRecursive(-2));
 // console.log(binarySearchTree.find(3));
 // console.log(binarySearchTree.findRecursive(3));
-console.log(binarySearchTree.find(-1));
-console.log(binarySearchTree.findRecursive(-1));
+// console.log(binarySearchTree.find(-1));
+// console.log(binarySearchTree.findRecursive(-1));
 // console.log(binarySearchTree.find(0));
 // console.log(binarySearchTree.findRecursive(0));
+console.log(binarySearchTree.BFS());
+console.log(binarySearchTree.DFSPreOrder());
+console.log(binarySearchTree.DFSPostOrder());
+console.log(binarySearchTree.DFSInOrder());
+
+//             1
+//           /   \
+//        -1       2
+//        /         \
+//     -4            4
+//     /  \          /
+//  -5    -2       3

@@ -1,4 +1,3 @@
-"use strict";
 // Złożoność:
 // - enqueue
 // Czas: O(1) - Wykonuję stałą liczbę operacji
@@ -6,7 +5,6 @@
 // - dequeue
 // Czas: O(1) - Wykonuję stałą liczbę operacji
 // Pamięć: O(1) - tylko zmienne pomocnicze
-Object.defineProperty(exports, "__esModule", { value: true });
 class Node {
     value;
     next;
@@ -15,7 +13,7 @@ class Node {
         this.next = next;
     }
 }
-class Queue {
+export class Queue {
     first = null;
     last = null;
     size = 0;
@@ -44,7 +42,7 @@ class Queue {
             oldFirst.next = null;
         }
         this.size--;
-        return oldFirst;
+        return oldFirst.value;
     }
 }
 const queue = new Queue();

@@ -1,4 +1,3 @@
-"use strict";
 // Złożoność:
 // - push
 // Czas: O(1) - Wykonuję stałą liczbę operacji
@@ -32,7 +31,6 @@
 // - reverse
 // Czas: O(n) - Jedna iteracja
 // Pamięć: O(1) - tylko zmienne pomocnicze
-Object.defineProperty(exports, "__esModule", { value: true });
 class Node {
     value;
     next;
@@ -214,3 +212,4 @@ console.log(doublyLinkedList.showAllNodes());
 doublyLinkedList.reverse();
 console.log(doublyLinkedList.showAllNodes());
 console.log(doublyLinkedList);
+export {};
