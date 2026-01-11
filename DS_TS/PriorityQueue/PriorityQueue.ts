@@ -1,3 +1,12 @@
+// Złożoność:
+// - enqueue
+// Czas: O(log n) - Element jest dodawany na koniec tablicy i może zrobić bubble up maksymalnie
+// o wysokość kopca (log n).
+// Pamięć: O(1) - Tylko zmienne pomocnicze.
+//
+// - dequeue
+// Czas: O(log n) - Usuwam korzeń i wykonuję bubble down, maksymalnie o wysokość kopca (log n).
+// Pamięć: O(1) - Tylko zmienne pomocnicze.
 class Node<T> {
   constructor(public value: T, public priority: number) {}
 }

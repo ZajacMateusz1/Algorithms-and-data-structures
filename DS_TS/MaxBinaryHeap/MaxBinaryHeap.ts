@@ -1,3 +1,12 @@
+// Złożoność:
+// - insert
+// Czas: O(log n) - Element jest dodawany na koniec tablicy i może zrobić bubble up maksymalnie
+// o wysokość kopca (log n).
+// Pamięć: O(1) - Tylko zmienne pomocnicze.
+//
+// - extractMax
+// Czas: O(log n) - Usuwam korzeń i wykonuję bubble down, maksymalnie o wysokość kopca (log n).
+// Pamięć: O(1) - Tylko zmienne pomocnicze.
 class MaxBinaryHeap<T> {
   private values: T[] = [];
   constructor(private readonly comparator: (a: T, b: T) => number) {}

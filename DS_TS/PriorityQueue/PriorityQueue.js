@@ -1,3 +1,12 @@
+// Złożoność:
+// - enqueue
+// Czas: O(log n) - Element jest dodawany na koniec tablicy i może zrobić bubble up maksymalnie
+// o wysokość kopca (log n).
+// Pamięć: O(1) - Tylko zmienne pomocnicze.
+//
+// - dequeue
+// Czas: O(log n) - Usuwam korzeń i wykonuję bubble down, maksymalnie o wysokość kopca (log n).
+// Pamięć: O(1) - Tylko zmienne pomocnicze.
 class Node {
     value;
     priority;
@@ -32,26 +41,28 @@ class PriorityQueue {
         ];
         const removed = this.values.pop();
         let bubblingIndex = 0;
-        while (this) {
+        while (true) {
             const leftChildIndex = bubblingIndex * 2 + 1;
             const rightChildIndex = bubblingIndex * 2 + 2;
             if (leftChildIndex >= this.values.length)
                 break;
             let smallestIndex = leftChildIndex;
             if (rightChildIndex < this.values.length) {
-                if (this.values[smallestIndex].priority -
-                    this.values[rightChildIndex].priority >
-                    0) {
+                if (this.values[smallestIndex].priority >
+                    this.values[rightChildIndex].priority) {
                     smallestIndex = rightChildIndex;
                 }
             }
+            if (this.values[bubblingIndex].priority <=
+                this.values[smallestIndex].priority)
+                break;
             [this.values[bubblingIndex], this.values[smallestIndex]] = [
                 this.values[smallestIndex],
                 this.values[bubblingIndex],
             ];
             bubblingIndex = smallestIndex;
         }
-        return removed;
+        return removed.value;
     }
 }
 const priorityQueue = new PriorityQueue();
@@ -64,5 +75,4 @@ console.log(priorityQueue.dequeue());
 console.log(priorityQueue.dequeue());
 console.log(priorityQueue.dequeue());
 console.log(priorityQueue.dequeue());
-console.log(priorityQueue.values);
 export {};
