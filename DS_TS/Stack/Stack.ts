@@ -9,7 +9,7 @@
 class Node<T> {
   constructor(public value: T, public next: Node<T> | null = null) {}
 }
-class Stack<T> {
+export class Stack<T> {
   private first: Node<T> | null = null;
   public size: number = 0;
   public push(value: T): number {

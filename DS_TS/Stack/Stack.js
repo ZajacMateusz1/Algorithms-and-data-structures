@@ -13,7 +13,7 @@ class Node {
         this.next = next;
     }
 }
-class Stack {
+export class Stack {
     first = null;
     size = 0;
     push(value) {
@@ -39,4 +39,3 @@ console.log(stack.push(3));
 console.log(stack.pop());
 console.log(stack.pop());
 console.log(stack);
-export {};

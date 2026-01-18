@@ -1,3 +1,5 @@
+import { Stack } from "../Stack/Stack.js";
+import { Queue } from "../Queue/Queue.js";
 class Graph {
     adjacencyList = new Map();
     addVertex(vertex) {
@@ -35,19 +37,81 @@ class Graph {
         this.adjacencyList.delete(vertex);
         return true;
     }
+    DFS(vertex) {
+        if (!this.adjacencyList.get(vertex))
+            return null;
+        const stack = new Stack();
+        const visited = new Set();
+        const answer = [];
+        stack.push(vertex);
+        visited.add(vertex);
+        while (stack.size) {
+            const removedElement = stack.pop();
+            answer.push(removedElement);
+            for (const neighbor of this.adjacencyList.get(removedElement)) {
+                if (!visited.has(neighbor)) {
+                    visited.add(neighbor);
+                    stack.push(neighbor);
+                }
+            }
+        }
+        return answer;
+    }
+    DFSRecursive(vertex) {
+        if (!this.adjacencyList.get(vertex))
+            return null;
+        const answer = [];
+        const visited = new Set();
+        visited.add(vertex);
+        answer.push(vertex);
+        this.DFSRecursiveHelper(vertex, visited, answer);
+        return answer;
+    }
+    DFSRecursiveHelper(vertex, visited, answer) {
+        for (const neighbor of this.adjacencyList.get(vertex)) {
+            if (!visited.has(neighbor)) {
+                visited.add(neighbor);
+                answer.push(neighbor);
+                this.DFSRecursiveHelper(neighbor, visited, answer);
+            }
+        }
+    }
+    BFS(vertex) {
+        if (!this.adjacencyList.get(vertex))
+            return null;
+        const queue = new Queue();
+        const visited = new Set();
+        const answer = [];
+        queue.enqueue(vertex);
+        visited.add(vertex);
+        answer.push(vertex);
+        while (queue.size) {
+            const removedElement = queue.dequeue();
+            for (const neighbor of this.adjacencyList.get(removedElement)) {
+                if (!visited.has(neighbor)) {
+                    visited.add(neighbor);
+                    queue.enqueue(neighbor);
+                    answer.push(neighbor);
+                }
+            }
+        }
+        return answer;
+    }
 }
 const graph = new Graph();
-console.log(graph.addVertex(1));
-console.log(graph.addVertex(2));
-console.log(graph.addVertex(3));
-console.log(graph.addVertex(4));
-console.log(graph.addEdge(1, 4));
-console.log(graph.addEdge(1, 3));
-console.log(graph.addEdge(3, 4));
-console.log(graph.removeEdge(0, 4));
-console.log(graph.removeEdge(1, 3));
-console.log(graph.removeVertex(1));
-console.log(graph.addVertex(1));
-console.log(graph.addVertex(1));
-console.log(graph.adjacencyList);
-export {};
+console.log(graph.addVertex("A"));
+console.log(graph.addVertex("B"));
+console.log(graph.addVertex("C"));
+console.log(graph.addVertex("D"));
+console.log(graph.addVertex("E"));
+console.log(graph.addVertex("F"));
+console.log(graph.addEdge("A", "B"));
+console.log(graph.addEdge("A", "C"));
+console.log(graph.addEdge("B", "D"));
+console.log(graph.addEdge("C", "E"));
+console.log(graph.addEdge("D", "E"));
+console.log(graph.addEdge("D", "F"));
+console.log(graph.addEdge("E", "F"));
+console.log(graph.DFSRecursive("A"));
+console.log(graph.DFS("A"));
+console.log(graph.BFS("A"));
