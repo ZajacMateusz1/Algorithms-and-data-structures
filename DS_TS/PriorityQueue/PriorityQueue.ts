@@ -8,10 +8,16 @@
 // Czas: O(log n) - Usuwam korzeń i wykonuję bubble down, maksymalnie o wysokość kopca (log n).
 // Pamięć: O(1) - Tylko zmienne pomocnicze.
 class Node<T> {
-  constructor(public value: T, public priority: number) {}
+  constructor(
+    public value: T,
+    public priority: number,
+  ) {}
 }
-class PriorityQueue<T> {
+export class PriorityQueue<T> {
   private values: Node<T>[] = [];
+  get size(): number {
+    return this.values.length;
+  }
   enqueue(value: T, priority: number): void {
     const newNode = new Node(value, priority);
     this.values.push(newNode);

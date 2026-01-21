@@ -15,8 +15,11 @@ class Node {
         this.priority = priority;
     }
 }
-class PriorityQueue {
+export class PriorityQueue {
     values = [];
+    get size() {
+        return this.values.length;
+    }
     enqueue(value, priority) {
         const newNode = new Node(value, priority);
         this.values.push(newNode);
@@ -75,4 +78,3 @@ console.log(priorityQueue.dequeue());
 console.log(priorityQueue.dequeue());
 console.log(priorityQueue.dequeue());
 console.log(priorityQueue.dequeue());
-export {};

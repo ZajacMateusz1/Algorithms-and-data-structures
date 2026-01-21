@@ -24,7 +24,10 @@ function selectionSort(arr, comparator) {
   return arr;
 }
 console.log(
-  selectionSort(["LilBub", "Garfield", "Heathcliff", "Blue", "Grumpy"], strComp)
+  selectionSort(
+    ["LilBub", "Garfield", "Heathcliff", "Blue", "Grumpy"],
+    strComp,
+  ),
 );
 // function selectionSort(arr) {
 //   for (let i = 0; i < arr.length; i++) {
