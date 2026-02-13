@@ -31,7 +31,7 @@ class Node<T> {
   constructor(
     public value: T,
     public left: Node<T> | null = null,
-    public right: Node<T> | null = null
+    public right: Node<T> | null = null,
   ) {}
 }
 
@@ -115,7 +115,7 @@ class BinarySearchTree<T> {
   }
   private findRecursiveHelper(
     currentNode: Node<T>,
-    value: T
+    value: T,
   ): Node<T> | undefined {
     const comparatorValue = this.comparator(currentNode.value, value);
     if (comparatorValue === 0) return currentNode;
@@ -182,7 +182,7 @@ class BinarySearchTree<T> {
 }
 
 const binarySearchTree = new BinarySearchTree<number>(
-  (a: number, b: number) => a - b
+  (a: number, b: number) => a - b,
 );
 binarySearchTree.insert(1);
 // console.log(binarySearchTree.insert(2));
