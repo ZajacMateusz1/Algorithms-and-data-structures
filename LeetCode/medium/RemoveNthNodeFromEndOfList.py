@@ -5,8 +5,8 @@
 # Czas: O(n) - Jedna iteracja
 # Pamięć: O(1) - Tylko dummy.
 # - Pierwsza wersja
-# Czas: O(n) - Jedna iteracja
-# Pamięć: O(1) - Tylko dummy.
+# Czas: O(n) - Dwie iteracje.
+# Pamięć: O(n) - Tylko dummy.
 
 from typing import Optional
 from DS.LinkedList import ListNode, SinglyLinkedList
